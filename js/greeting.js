@@ -1,13 +1,21 @@
-let a = '*';
-while(a.length<=7){
-    console.log(a);
-    a = a + '*';
-}
+function numbers(number1, number2) {
+    if(number1 < number2) {
+        console.log("первое число меньше");
+    }else if (number1 > number2) {
+        console.log("второе число меньше");
+    }else if (number1 == number2) {
+        console.log("они равны");
+    }
+};
 
+const numb1 = prompt("1")
+const numb2 = prompt("2")
 
-for (let i = 1; i < 101; i++) {
-    if (i % 15 === 0) console.log("FizzBuzz");
-    else if (i % 3 === 0) console.log("Fizz");
-    else if (i % 5 === 0) console.log("Buzz");
-    else console.log(i);
+numbers(numb1, numb2)
+
+function countChar(pl) {
+    console.log(pl.length);
 }
+const n1 = prompt("")
+
+countChar(n1)
