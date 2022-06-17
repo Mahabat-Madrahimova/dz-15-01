@@ -1,21 +1,14 @@
-function numbers(number1, number2) {
-    if(number1 < number2) {
-        console.log("первое число меньше");
-    }else if (number1 > number2) {
-        console.log("второе число меньше");
-    }else if (number1 == number2) {
-        console.log("они равны");
-    }
-};
+const a = document.querySelector('.button0');
+const b = document.querySelector('.button1');
+const c = document.querySelector('.h1');
 
-const numb1 = prompt("1")
-const numb2 = prompt("2")
+let num = 0
 
-numbers(numb1, numb2)
-
-function countChar(pl) {
-    console.log(pl.length);
+a.onclick = () => {
+    num = num + 1
+    c.innerHTML = num
+} 
+b.onclick = () => {
+    num = num - 1
+    c.innerHTML = num
 }
-const n1 = prompt("")
-
-countChar(n1)
