@@ -19,7 +19,7 @@ function todoHandler(id, action, value) {
 }
 
 function todoButtonsHandler() {
-    const btns = document.querySelectorAll('.todo-btn'); // что бы получить кнопки новых тудушек
+    const btns = document.querySelectorAll('.todo-btn');     // что бы получить кнопки новых тудушек
     btns.forEach(btn => {
         // итерация для того что-бы отслеживать все кнопки с таким классом
         btn.onclick = () => {
@@ -53,10 +53,15 @@ function render() {
 
 
 button.onclick = () => {
-    const obj = {
-        id: list.length + 1,
-        text: input.value
+    if (input.value.length > 0) {
+        const obj = {
+            id: list.length + 1,
+            text: input.value
+        }
+        list.push(obj)
+        render();// что бы обновить список тудушек
+    }else {
+        alert('нельзя создать пустую тудущку');
     }
-    list.push(obj)
-    render(); // что бы обновить список тудушек
+
 }
