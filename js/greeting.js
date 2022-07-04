@@ -1,67 +1,79 @@
-const input = document.getElementById('input'),
-    button = document.getElementById('button'),
-    listDiv = document.querySelector('.list'),
-    list = [];
+class Human {
+    constructor(name, age, gender, position) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.position = position;
 
-function todoHandler(id, action, value) {
-    // id тудушки. действие. текст, для редактирования тудушки
-    for (let i = 0; i < list.length; i++) {
-        if (list[i].id === +id) {
-            switch (action) {
-                case 'delete':
-                    list.splice(i, 1);  break
-                case 'change':
-                    list[i].text = value; break
-            }
-        }
     }
-    render(); // что бы обновить список тудушек
 }
 
-function todoButtonsHandler() {
-    const btns = document.querySelectorAll('.todo-btn');     // что бы получить кнопки новых тудушек
-    btns.forEach(btn => {
-        // итерация для того что-бы отслеживать все кнопки с таким классом
-        btn.onclick = () => {
-            // проверяем класс кнопки, затем получаем id тудушки через родительский див
-            if (btn.classList.contains('delete')) {
-                todoHandler(btn.parentElement.getAttribute('id'), 'delete');
-            } else if (btn.classList.contains('change')) {
-                const value = prompt('введите текст');
-                todoHandler(btn.parentElement.getAttribute('id'), 'change', value);
-            }
-        }
-    })
-}
-
-function render() {
-    listDiv.innerHTML = ''; // очищаем листДив что-бы не было повторений
-    for (let i = 0; i < list.length; i++) {
-        // вставляем обновленный список
-        listDiv.insertAdjacentHTML('beforeend', `
-            <div class="todoBlock">
-                <p>${list[i].text}</p>
-                <div id="${list[i].id}" class="action">
-                    <button class="change todo-btn">change</button>
-                    <button class="delete todo-btn">delete</button>
-                </div>
-            </div>
-        `)
+class Teacher extends Human{
+    constructor(name, age, position, direction, experience, gender) {
+        super(name, age, gender, position);
+        this.experience = experience;
+        this.direction = direction;
     }
-    todoButtonsHandler(); // после каждого создания, обновляем отслеживание кнопок
 }
+const marina = new Teacher(
+    'marina',
+    45,
+    'teacher',
+    'UI-UX',
+    13,
+    'female'
+)
+console.log(marina)
 
-
-button.onclick = () => {
-    if (input.value.length > 0) {
-        const obj = {
-            id: list.length + 1,
-            text: input.value
-        }
-        list.push(obj)
-        render();// что бы обновить список тудушек
-    }else {
-        alert('нельзя создать пустую тудущку');
+class Student extends Human{
+    constructor(name, age, position, direction, rating, month, gender) {
+        super(name, age, gender, position);
+        this.direction = direction;
+        this.month = month;
+        this.rating = rating;
     }
-
 }
+
+const mahabat = new Student(
+    'Mahabat',
+    17,
+    'student',
+    'frontend',
+    10,
+    2,
+    'famale'
+)
+console.log(mahabat);
+
+
+
+class Family{
+    constructor(familyName, amount) {
+        this.familyName = familyName;
+        this.amount = amount;
+    }
+}
+
+const metalFamily = new Family(
+      'Metal-Family',
+      4
+)
+
+class FamilyMember extends Human{
+    constructor(name, age, position, familyName){
+      super(name, age, position, familyName);
+      this.familyName = familyName;
+    }
+    getInf(){
+      console.log(`Name: ${this.name};\nAge: ${this.age};\nfamilyName: ${this.familyName}.`)
+    }
+}
+
+const d = new FamilyMember(
+      'D',
+      15,
+      'старший сын',
+      'Metal-Family'
+)
+
+d.getInf();
